@@ -19,7 +19,7 @@ class BlockedUsersPage extends StatelessWidget {
                 // cancle button
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text("Unblock"),
+                  child: Text("cancel"),
                 ),
 
                 // Unblock button
@@ -65,10 +65,11 @@ class BlockedUsersPage extends StatelessWidget {
             }
             // load complete
             return ListView.builder(
+              itemCount: blockedUsers.length ,
               itemBuilder: (context, index) {
                 final user = blockedUsers[index];
                 return UserTile(
-                  text: user["Email"],
+                  text: user["email"],
                   ontap: () => _showUnblockBox(context, user['uid']),
                 );
               },

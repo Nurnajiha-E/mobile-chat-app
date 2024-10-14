@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; //เชื่อมต่อ database
+import 'package:firebase_auth/firebase_auth.dart'; //ยืนยันตัวตน
 import 'package:flutter/material.dart';
 import 'package:my_final_project/models/message.dart';
 
@@ -10,9 +10,9 @@ class ChatService extends ChangeNotifier {
 
   //get all user stream
   Stream<List<Map<String, dynamic>>> getUserStream() {
-    return _firestore.collection("Users").snapshots().map((snapshot) {
+    return _firestore.collection("Users").snapshots().map((snapshot) { //ดึงข้อมูลจาก user collection ในdatabase
       return snapshot.docs
-          .where((doc) => doc.data()['email'] != _auth.currentUser!.email)
+          .where((doc) => doc.data()['email'] != _auth.currentUser!.email) //กรองผู้ใช้ปัจจุบัน
           .map((doc) => doc.data())
           .toList();
     });
@@ -101,7 +101,7 @@ class ChatService extends ChangeNotifier {
     await _firestore
         .collection('Users')
         .doc(currentUser!.uid)
-        .collection('BlockUsers')
+        .collection('BlockedUsers')
         .doc(userId)
         .set({});
     notifyListeners();
@@ -112,7 +112,7 @@ class ChatService extends ChangeNotifier {
     final currentUser = _auth.currentUser;
 
     await _firestore
-        .collection('User')
+        .collection('Users')
         .doc(currentUser!.uid)
         .collection('BlockedUsers')
         .doc(blockedUserId)

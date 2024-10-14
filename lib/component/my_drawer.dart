@@ -4,25 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:my_final_project/pages/SettingPage.dart';
 // import 'package:my_final_project/pages/login_page.dart';
 import 'package:my_final_project/services/auth/auth_service.dart';
+
 class MyDrawer extends StatelessWidget {
+
   const MyDrawer({super.key});
+
   void logout(){
     // get auth service
     final auth = AuthService();
     auth.signOut();
   }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      
       child: Column(
         children: [
+
           // logo
           Material(
             child: DrawerHeader(
               decoration: BoxDecoration(
-                
                 border: Border(bottom:BorderSide(color: Colors.transparent) )
               ),
               child: Center(
@@ -33,7 +36,6 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            
           ),
 
           // home list tile
@@ -43,7 +45,7 @@ class MyDrawer extends StatelessWidget {
               title: Text("H O M E"),
               leading: Icon(Icons.home),
               onTap: () {
-                //pop the drawer
+                //pop the drawer ปิดdrawerลง
                 Navigator.pop(context);
               },
             ),

@@ -20,8 +20,8 @@ class ChatBubble extends StatelessWidget {
   void _showOptions(BuildContext context, String messageId, String userId) {
     showModalBottomSheet(
         context: context,
-        builder: (context) {
-          return SafeArea(
+        builder: (context) { //กำหนกเนื้อหาที่จะแสดง
+          return SafeArea( 
               child: Wrap(
             children: [
               // report message
@@ -44,10 +44,10 @@ class ChatBubble extends StatelessWidget {
                 },
               ),
 
-              // cancle user
+              //cancel user
               ListTile(
                 leading: Icon(Icons.cancel),
-                title: Text('Cancle'),
+                title: Text('Cancel'),
                 onTap: () =>Navigator.pop(context),
               ),
             ],
@@ -63,11 +63,12 @@ class ChatBubble extends StatelessWidget {
               title: Text('Report Message'),
               content: Text('Are you sure you want report this message?'),
               actions: [
-                // cancle buttom
+                // cancel buttom
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text("cancle"),
+                  child: Text("cancel"),
                 ),
+                
                 // report buttom
                 TextButton(
                   onPressed: () {
@@ -92,7 +93,7 @@ class ChatBubble extends StatelessWidget {
                 // cancle buttom
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text("cancle"),
+                  child: Text("cancel"),
                 ),
                 // block buttom
                 TextButton(

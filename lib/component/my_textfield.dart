@@ -5,7 +5,7 @@ class MyTextfield extends StatelessWidget {
   final bool obscuerText;
   final TextEditingController controller;
   final FocusNode? focusNode;
-  
+
   const MyTextfield({
     super.key,
     required this.hintText,
@@ -21,15 +21,16 @@ class MyTextfield extends StatelessWidget {
           obscureText: obscuerText,
           controller: controller,
           focusNode: focusNode,
-          decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
+
+          decoration: InputDecoration( //กำหนดลักณะtextfield
+              enabledBorder: OutlineInputBorder( //เมื่อไม่focus
                   borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.tertiary)),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: OutlineInputBorder( //เมื่อfocus
                 borderSide:
                     BorderSide(color: Theme.of(context).colorScheme.primary),
               ),
-              fillColor: Theme.of(context).colorScheme.surface,
+              fillColor: Theme.of(context).colorScheme.surface, //สีพื้นหลัง
               filled: true,
               hintText: hintText,
               hintStyle:
