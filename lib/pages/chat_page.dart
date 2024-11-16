@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:my_final_project/component/chat_bubble.dart';
 import 'package:my_final_project/component/my_textfield.dart';
+import 'package:my_final_project/pages/note_page.dart';
 import 'package:my_final_project/services/auth/auth_service.dart';
 import 'package:my_final_project/services/chat/chat_service.dart';
 
@@ -36,7 +37,7 @@ class _ChatPageState extends State<ChatPage> {
     // add listener to focus node
     myFocusNode.addListener(() {
       if (myFocusNode.hasFocus) {
-        // เพิ่มเวลสดีเลย์ คียบอร์ดจะได้มีเวลาโชว์ คำนวณพื้นที่ และเลื่อนลง
+        // เพิ่มเวลาดีเลย์ คียบอร์ดจะได้มีเวลาโชว์ คำนวณพื้นที่ และเลื่อนลง
         Future.delayed(
           const Duration(milliseconds: 500),
           () => scrollDown(),
@@ -87,6 +88,24 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         title: Text(widget.receiverEmail),
         backgroundColor: Theme.of(context).colorScheme.secondary,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.notes,
+              size: 35,
+            ), // ไอคอนที่ต้องการให้แสดง
+            onPressed: () {
+              // การพาไปหน้าถัดไป
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      NotePage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -134,7 +153,7 @@ class _ChatPageState extends State<ChatPage> {
     // align messageto the right if sender is current user, otherswise left
     var alignment =
         isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
-        
+
     return Container(
       alignment: alignment,
       child: Column(
